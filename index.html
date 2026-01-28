@@ -1,49 +1,278 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Wedding Invitation</title>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sam & Vanessa — Wedding</title>
+  <meta name="description" content="Celebrate the wedding of Alex and Jordan. Details, schedule, travel info, and RSVP." />
+  <style>
+    :root {
+      --bg: #faf7f5;
+      --ink: #2a2a2a;
+      --muted: #6b6b6b;
+      --accent: #b88b6a;
+      --card: #ffffff;
+      --border: #e9e1dc;
+    }
 
-    <style>
-        body {
-            font-family: "Courier New", Courier, monospace;
-            text-align: center;
-            margin-top: 80px;
-            line-height: 1.8;
-        }
-    </style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 10% -10%, #fff 0%, transparent 60%),
+                  radial-gradient(1200px 600px at 110% 10%, #fff 0%, transparent 60%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+
+    /* Layout */
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    header { position: sticky; top: 0; background: rgba(250,247,245,0.85); backdrop-filter: blur(6px); border-bottom: 1px solid var(--border); z-index: 10; }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { font-weight: 600; letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: var(--ink); font-size: 14px; padding: 6px 10px; border-radius: 999px; }
+    .nav-links a:hover { background: #fff; }
+
+    /* Hero */
+    .hero { padding: 72px 24px 48px; text-align: center; }
+    .hero-card { background: linear-gradient(180deg, #ffffff 0%, #fff9f5 100%); border: 1px solid var(--border); border-radius: 24px; padding: 56px 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
+    .kicker { text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: var(--muted); }
+    h1 { font-size: clamp(36px, 6vw, 64px); margin: 12px 0 8px; font-family: Georgia, "Times New Roman", serif; }
+    .date { font-size: 18px; color: var(--muted); }
+    .cta { margin-top: 28px; display: inline-block; background: var(--accent); color: #fff; padding: 12px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+
+    /* Countdown */
+    .countdown { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .cd-box { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 16px 8px; }
+    .cd-num { font-size: 32px; font-weight: 700; }
+    .cd-label { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+
+    /* Sections */
+    section { padding: 36px 0; }
+    .grid { display: grid; gap: 20px; }
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; } .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 22px; }
+    .card h2 { margin-top: 0; font-family: Georgia, "Times New Roman", serif; }
+    .muted { color: var(--muted); }
+
+    /* Timeline */
+    .timeline { display: grid; gap: 14px; }
+    .event { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: start; }
+    .time { font-weight: 600; color: var(--accent); }
+
+    /* Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (min-width: 768px) { .gallery { grid-template-columns: repeat(4, 1fr); } }
+    .ph { aspect-ratio: 1/1; border-radius: 16px; background: linear-gradient(135deg, #f3e8e1, #f9f3ef); display: grid; place-items: center; color: #a58c7c; font-size: 14px; border: 1px dashed var(--border); }
+
+    /* RSVP */
+    form { display: grid; gap: 14px; }
+    label { font-size: 14px; }
+    input, textarea, select, button {
+      width: 100%; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border); font: inherit;
+    }
+    button { background: var(--accent); color: #fff; border: none; cursor: pointer; font-weight: 600; }
+    button:hover { filter: brightness(0.95); }
+
+    footer { border-top: 1px solid var(--border); padding: 24px 0 60px; text-align: center; color: var(--muted); }
+    .pill { display: inline-block; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--border); }
+  </style>
 </head>
 <body>
+  <!--
+    HOW TO USE (Updated):
+    1) Countdown timer:
+       - Scroll to the <script> at the bottom and change the weddingDate value.
 
-    <h1>You Are Invited</h1>
+    2) RSVP to your inbox:
+       - This form is now wired for Formspree (free, no backend needed).
+       - Create a free account at formspree.io and get your form endpoint.
+       - Replace https://formspree.io/f/XXXXXXXX with your real endpoint.
+       - Submissions will go directly to your email.
+  -->
 
-    <p>
-        With great joy, we invite you to celebrate the wedding of
-    </p>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">Alex & Jordan</div>
+        <div class="nav-links">
+          <a href="#details">Details</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#travel">Travel</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#rsvp">RSVP</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-    <h2>Emma Williams & Daniel Carter</h2>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="kicker">You're invited</div>
+          <h1>Alex & Jordan</h1>
+          <div class="date">Saturday, June 14, 2026 • Willow Creek Gardens</div>
 
-    <p>
-        Saturday, the 14th of September, 2026  
-        <br>
-        At 4:00 in the afternoon
-    </p>
+          <!-- Countdown Timer -->
+          <div class="countdown" id="countdown">
+            <div class="cd-box"><div class="cd-num" id="days">0</div><div class="cd-label">Days</div></div>
+            <div class="cd-box"><div class="cd-num" id="hours">0</div><div class="cd-label">Hours</div></div>
+            <div class="cd-box"><div class="cd-num" id="minutes">0</div><div class="cd-label">Minutes</div></div>
+            <div class="cd-box"><div class="cd-num" id="seconds">0</div><div class="cd-label">Seconds</div></div>
+          </div>
 
-    <p>
-        The Rosewood Garden Hall  
-        <br>
-        123 Willow Lane  
-        <br>
-        Springfield
-    </p>
+          <a class="cta" href="#rsvp">RSVP</a>
+        </div>
+      </div>
+    </section>
 
-    <p>
-        Dinner and dancing to follow the ceremony.
-    </p>
+    <section id="details">
+      <div class="container grid grid-2">
+        <div class="card">
+          <h2>Our Story</h2>
+          <p>We met over coffee, bonded over bad puns, and here we are. We can't wait to celebrate with you.</p>
+        </div>
+        <div class="card">
+          <h2>Event Details</h2>
+          <p><strong>Ceremony:</strong> 4:00 PM (Garden Terrace)</p>
+          <p><strong>Reception:</strong> 5:30 PM (Glass Pavilion)</p>
+          <p><strong>Dress code:</strong> Garden cocktail</p>
+          <p class="muted">Willow Creek Gardens, 123 Evergreen Lane, Hometown</p>
+        </div>
+      </div>
+    </section>
 
-    <p>
-        Kindly RSVP by August 20, 2026
-    </p>
+    <section id="schedule">
+      <div class="container">
+        <div class="card">
+          <h2>Schedule</h2>
+          <div class="timeline">
+            <div class="event"><div class="time">3:30 PM</div><div>Guest arrival & seating</div></div>
+            <div class="event"><div class="time">4:00 PM</div><div>Ceremony</div></div>
+            <div class="event"><div class="time">5:00 PM</div><div>Cocktail hour</div></div>
+            <div class="event"><div class="time">6:30 PM</div><div>Dinner & toasts</div></div>
+            <div class="event"><div class="time">8:00 PM</div><div>Dancing & dessert</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section id="travel">
+      <div class="container grid grid-2">
+        <div class="card">
+          <h2>Travel & Stay</h2>
+          <ul>
+            <li>Hotel block: Riverside Hotel (code: ALEXJORDAN)</li>
+            <li>Parking available on-site</li>
+            <li>Shuttle runs every 30 minutes from the hotel</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Registry</h2>
+          <p>We are grateful for your presence. If you'd like to give a gift, please visit our registry:</p>
+          <p class="pill">example.com/registry</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="card">
+          <h2>Gallery</h2>
+          <div class="gallery">
+            <div class="ph">Add photo</div>
+            <div class="ph">Add photo</div>
+            <div class="ph">Add photo</div>
+            <div class="ph">Add photo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="container">
+        <div class="card">
+          <h2>RSVP</h2>
+          <p class="muted">Please respond by May 1, 2026</p>
+
+          <!-- FORM WIRED FOR EMAIL DELIVERY VIA FORMSPREE -->
+          <form action="https://formspree.io/f/maqogdao" method="POST">
+            <div class="grid grid-2">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" required placeholder="Your full name" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" />
+              </div>
+            </div>
+            <div>
+              <label for="attendance">Will you attend?</label>
+              <select id="attendance" name="attendance">
+                <option>Joyfully accepts</option>
+                <option>Regretfully declines</option>
+              </select>
+            </div>
+            <div>
+              <label for="notes">Notes (dietary restrictions, song requests, etc.)</label>
+              <textarea id="notes" name="notes" rows="3"></textarea>
+            </div>
+
+            <!-- Optional: email subject line -->
+            <input type="hidden" name="_subject" value="New Wedding RSVP" />
+
+            <button type="submit">Submit RSVP</button>
+          </form>
+
+          <p class="muted" style="margin-top:12px;">(Tip: Replace the Formspree link with your own to receive emails.)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>With love, Alex & Jordan</p>
+      <p class="muted">© 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    // =============================
+    // COUNTDOWN TIMER CONFIGURATION
+    // =============================
+    // Change this to your real wedding date/time:
+    // Format: new Date("2026-06-14T16:00:00")
+    const weddingDate = new Date("2026-06-14T16:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "<strong>Today is the day! 🎉</strong>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
