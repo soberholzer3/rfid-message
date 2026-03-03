@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GIF Only</title>
+  <title>Full Width GIF</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #000; /* Optional background */
+      padding: 0;
     }
     img {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100vw;   /* Full viewport width */
+      height: auto;   /* Maintain aspect ratio */
+      display: block; /* Remove small bottom gap */
     }
   </style>
 </head>
